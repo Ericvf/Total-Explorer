@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="TotalExplorer" Language="1033" Version="1.0.0.0" Manufacturer="Appbyfex" UpgradeCode="edad0f21-a827-4322-8f00-92d11b1de66b">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate />
+
+    <Feature Id="ProductFeature" Title="TotalExplorer" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+    
+    <UI>
+      <UIRef Id="WixUI_Minimal" />
+    </UI>
+	</Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="DesktopFolder" Name="Desktop"/>
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="Appbyfex" Name="Appbyfex">
+          <Directory Id="INSTALLFOLDER" Name="TotalExplorer" >
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+  </Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="ProductComponent" Guid="D9247E78-1CB0-4F71-8D28-9F72581A647B">
+        <File Id="_EF142827" Name="TotalExplorer.exe" Source="..\BitSquared.Explorer\bin\Release\TotalExplorer.exe">
+          <Shortcut Advertise="yes"
+                    Id="TotalExplorerDesktopShortcut"
+                    Directory="DesktopFolder"
+                    Name="TotalExplorer"
+                    WorkingDirectory="INSTALLFOLDER"
+                    Icon="TotalExplorer.exe">
+            <Icon Id="TotalExplorer.exe" SourceFile="..\BitSquared.Explorer\bin\Release\TotalExplorer.exe" />
+          </Shortcut>
+        </File>
+        <File Id="_17565A1D" Name="TotalExplorer.exe.config" Source="..\BitSquared.Explorer\bin\Release\TotalExplorer.exe.config" />
+        <File Id="_7025BF1C" Name="Microsoft.WindowsAPICodePack.Shell.dll" Source="..\BitSquared.Explorer\bin\Release\Microsoft.WindowsAPICodePack.Shell.dll" />
+        <File Id="_892E2076" Name="Microsoft.WindowsAPICodePack.dll" Source="..\BitSquared.Explorer\bin\Release\Microsoft.WindowsAPICodePack.dll" />
+      </Component>
+		</ComponentGroup>
+	</Fragment>
+</Wix>
